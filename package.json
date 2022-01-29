@@ -1,0 +1,37 @@
+{
+  "name": "blockchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node ./src/service/index.js",
+    "start:2": "SET HTTP_PORT=3001 & SET P2P_PORT=5001 & SET PEERS=ws:localhost:5000  & npm start",
+    "nodemon": "nodemon --exec npm start",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "miner": "babel-node miner.js"
+  },
+  "author": "DM",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.16.12",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.11",
+    "body-parser": "^1.19.1",
+    "crypto-js": "^4.1.1",
+    "elliptic": "^6.5.4",
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "express": "^4.17.2",
+    "jest": "^27.4.7",
+    "nodemon": "^2.0.15",
+    "uuid": "^8.3.2",
+    "ws": "^8.4.2"
+  },
+  "jest": {
+    "silent": true,
+    "verbose": true,
+    "testEnvironment": "node"
+  }
+}
