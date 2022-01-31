@@ -1,3 +1,5 @@
+// FILE TO TEST MINE BLOCKS
+
 import Block from "./src/blockchain/block";
 
 const { genesis } = Block;
