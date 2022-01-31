@@ -2,16 +2,22 @@ import { it } from "eslint/lib/rule-tester/rule-tester";
 import Wallet, { INITIAL_BALANCE } from "./wallet";
 
 describe("Wallet", () => {
-  let wallet;
+	let wallet;
 
-  beforeEach(() => {
-    wallet = new Wallet();
-  });
+	beforeEach(() => {
+		wallet = new Wallet();
+	});
 
-  it("it is a healthy wallet", () => {
-    expect(wallet.balance).toEqual(INITIAL_BALANCE);
-    expect(typeof wallet.keyPair).toEqual("object");
-    expect(typeof wallet.publicKey).toEqual("string");
-    expect(wallet.publicKey.length).toEqual(130);
-  });
+	it("it is a healthy wallet", () => {
+		expect(wallet.balance).toEqual(INITIAL_BALANCE);
+		expect(typeof wallet.keyPair).toEqual("object");
+		expect(typeof wallet.publicKey).toEqual("string");
+		expect(wallet.publicKey.length).toEqual(130);
+	});
+
+	it("use sign()", () => {
+		const signature = wallet.sign("Hello");
+		expect(typeof signature).toEqual("object");
+		expect(signature).toEqual(wallet.sign("Hello"));
+	});
 });
