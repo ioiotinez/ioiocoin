@@ -1,4 +1,3 @@
-import MemoryPool from "../blockchain/memoryPool";
 import { elliptic, hash } from "../modules";
 import Transaction from "./transaction";
 
@@ -39,6 +38,8 @@ class Wallet {
 			tx = Transaction.create(this, recipientAddress, amount);
 			memoryPool.addOrUpdate(tx);
 		}
+
+		return tx;
 	}
 }
 export { INITIAL_BALANCE };

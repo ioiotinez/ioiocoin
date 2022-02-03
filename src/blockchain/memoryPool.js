@@ -1,9 +1,22 @@
+import { Transaction } from "../wallet";
+
 class MemoryPool {
 	constructor() {
 		this.transactions = [];
 	}
 
 	addOrUpdate(transaction) {
+		const { input, outputs = [] } = transaction;
+		const outputTotal = outputs.reduce(
+			(total, output) => total + output.amount,
+			0
+		);
+		if (input.amount !== outputTotal) {
+			throw new Error("Invalid transaction");
+		}
+		if (!Transaction.verfiy(transaction)) {
+			throw new Error("Invalid signature");
+		}
 		const index = this.transactions.findIndex(
 			(item) => item.id === transaction.id
 		);
