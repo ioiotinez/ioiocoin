@@ -50,4 +50,9 @@ describe("MemoryPool", () => {
 
 		expect(txNew).toEqual(txNew);
 	});
+
+	it("wipes transactions", () => {
+		memoryPool.wipe();
+		expect(memoryPool.transactions.length).toEqual(0);
+	});
 });

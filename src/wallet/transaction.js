@@ -1,6 +1,7 @@
-import { transformAsync } from "@babel/core";
 import { v4 as uuidv4 } from "uuid";
 import { elliptic } from "../modules";
+
+const REWARD = 1;
 
 class Transaction {
 	constructor() {
@@ -64,6 +65,12 @@ class Transaction {
 
 		return this;
 	}
+
+	static reward(minerWallet, blockchainWallet) {
+		return this.create(blockchainWallet, minerWallet.publicKey, REWARD);
+	}
 }
+
+export { REWARD };
 
 export default Transaction;

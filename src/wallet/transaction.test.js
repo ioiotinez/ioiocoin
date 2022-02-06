@@ -1,6 +1,6 @@
-import { it } from "eslint/lib/rule-tester/rule-tester";
-import Transaction from "./transaction";
+import Transaction, { REWARD } from "./transaction";
 import Wallet from "./wallet";
+import { blockchainWallet } from "./blockchain";
 
 describe("Transaction", () => {
 	let wallet;
@@ -70,6 +70,26 @@ describe("Transaction", () => {
 			);
 
 			expect(output.amount).toEqual(nextAmount);
+		});
+	});
+
+	describe("creating a reward transaction", () => {
+		beforeEach(() => {
+			transaction = Transaction.reward(wallet, blockchainWallet);
+		});
+
+		it("reward the miners wallet", () => {
+			expect(transaction.outputs.length).toEqual(2);
+
+			let output = transaction.ouputs.find(
+				({ address }) => address === wallet.publicKey
+			);
+			expect(ouput.amount).toEqual(REWARD);
+
+			output = transaction.ouputs.find(
+				({ address }) => address === blockchainWallet.publicKey
+			);
+			expect(output.amount).toEqual(blockchainWallet.balance - REWARD);
 		});
 	});
 });

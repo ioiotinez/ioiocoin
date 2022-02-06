@@ -33,6 +33,10 @@ class MemoryPool {
 			(transaction) => transaction.input.address === address
 		);
 	}
+
+	wipe() {
+		this.transactions = [];
+	}
 }
 
 export default MemoryPool;
